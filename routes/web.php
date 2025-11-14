@@ -14,8 +14,5 @@ use App\Http\Controllers\NotesController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::resource('notes', NotesController::class);

@@ -19,13 +19,13 @@
             <form action="/notes" method="POST">
                 @csrf
                 <div class="form-group">
-                    <label for="title">Judul Catatan</label>
-                    <input type="text" id="title" name="title" placeholder="Masukkan judul catatan..." required>
+                    <label for="judul">Judul Catatan</label>
+                    <input type="text" id="judul" name="judul" placeholder="Masukkan judul catatan..." required>
                 </div>
 
                 <div class="form-group">
-                    <label for="note">Isi Catatan</label>
-                    <textarea id="note" name="note" placeholder="Tulis isi catatanmu di sini..." required></textarea>
+                    <label for="deskripsi">Isi Catatan</label>
+                    <textarea id="deskripsi" name="deskripsi" placeholder="Tulis isi catatanmu di sini..." required></textarea>
                 </div>
 
                 <div class="form-buttons">
