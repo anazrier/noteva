@@ -1,41 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>notesva - All notes</title>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noteva - Catatan Saya</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <body>
 
-    <h1>Daftar notes</h1>
+    <header class="navbar">
+        <h1>NOTEVA</h1>
+    </header>
 
-    <!-- Summary -->
-    @if(isset($summary))
-        <h3>Ringkasan Semua Catatan:</h3>
-        <p>{{ $summary }}</p>
-        <hr>
-    @endif
+    <main class="container">
+        <div class="note-list">
+            <h2>Catatan Tersimpan</h2>
+
+            @if (count($notes) > 0)
+                @foreach ($notes as $note)
+                    <div class="note-item">
+                        <h3>{{ $note['judul'] }}</h3>
+                        <p>{{ $note['deskripsi'] }}</p>
+
+                        <div class="note-actions">
+                            <!-- Tombol Edit -->
+                            <a href="{{ route('notes.edit', $note->id) }}" class="btn-edit">Edit</a>
 
 
-    <!-- Form tambah notes -->
-    <h2>Tambah notes Baru</h2>
-    <form action="{{ route('notes.store') }}" method="POST">
-        @csrf
-        <input type="text" name="judul" placeholder="Judul" required> <br><br>
-        <textarea name="deskripsi" placeholder="Deskripsi..." required></textarea><br><br>
-        <button type="submit">Simpan</button>
-    </form>
+                            <!-- Tombol Hapus -->
+                            <form action="{{ route('notes.destroy', $note->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus catatan ini?')" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn-delete">Hapus</button>
+                            </form>
+                        </div>
 
-    <hr>
-
-    <!-- List semua notes -->
-    <h2>Semua Catatan</h2>
-
-    @foreach ($notes as $notes)
-        <div style="margin-bottom: 20px;">
-            <h3>{{ $notes->judul }}</h3>
-            <p>{{ Str::limit($notes->deskripsi, 100) }}</p>
-            <a href="{{ route('notes.show', $notes->id) }}">Lihat Detail</a>
+                    </div>
+                @endforeach
+            @else
+                <p class="empty">Belum ada catatan yang tersimpan.</p>
+            @endif
         </div>
-    @endforeach
 
+    </main>
+    <!-- Tombol tambah catatan -->
+    <a href="/notes/create" class="btn-float">+</a>
 </body>
 </html>

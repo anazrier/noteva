@@ -16,6 +16,10 @@ class NotesController extends Controller
             'notes' => $notes
         ]);
     }
+    public function create()
+    {
+        return view('notes.create');
+    }
 
     public function store(Request $request)
     {
@@ -53,7 +57,7 @@ class NotesController extends Controller
             'tanggal_perubahan' => Carbon::now(),
         ]);
 
-        return redirect()->route('notes.show', $note->id);
+        return redirect()->route('notes.index', $note->id);
     }
 
     public function destroy(Notes $note)
@@ -62,4 +66,12 @@ class NotesController extends Controller
 
         return redirect()->route('notes.index');
     }
+
+    public function edit(Notes $note)
+{
+    return view('notes.edit', compact('note'));
 }
+
+}
+
+

@@ -275,3 +275,162 @@ textarea {
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
 }
+
+/* ===== NOTE ACTION BUTTONS (Edit, Hapus, Summarize) ===== */
+.note-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn-edit,
+.btn-delete,
+.btn-summarize {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+/* Tombol Edit (biru) */
+.btn-edit {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.btn-edit:hover {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(37, 99, 235, 0.25);
+}
+
+/* Tombol Hapus (merah) */
+.btn-delete {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.btn-delete:hover {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(239, 68, 68, 0.25);
+}
+
+/* Tombol Summarize (hijau) */
+.btn-summarize {
+    background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.btn-summarize:hover {
+    background: linear-gradient(135deg, #059669, #047857);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(16, 185, 129, 0.25);
+}
+
+/* ===== FORM CREATE & EDIT ===== */
+.note-form {
+    max-width: 500px;
+    margin: 3rem auto;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 2rem;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.note-form label {
+    display: block;
+    color: #fff;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.note-form input[type="text"],
+.note-form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+    font-family: "Poppins", sans-serif;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.note-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Tombol Simpan */
+.btn-save {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: #fff;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+    transition: all 0.3s ease;
+}
+
+.btn-save:hover {
+    background: linear-gradient(135deg, #059669, #047857);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
+}
+
+/* Tombol Kembali */
+.btn-back {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    padding: 0.7rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* ===== FLOATING BUTTON (+) ===== */
+.btn-float {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: #fff;
+    font-size: 28px;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.3);
+    transition: all 0.35s ease;
+    z-index: 999;
+    animation: floatUp 0.9s ease forwards;
+}
+
+.btn-float:hover {
+    transform: scale(1.08);
+    background: linear-gradient(135deg, #1d4ed8, #2563eb);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+}
