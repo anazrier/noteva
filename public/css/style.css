@@ -1,0 +1,277 @@
+/* ===== RESET & FONT ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* ===== BODY ===== */
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #a2d2ff, #003566);
+    background-attachment: fixed;
+    color: #fff;
+    overflow-x: hidden;
+    transition: background 0.5s ease;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 18px 0;
+    text-align: center;
+    z-index: 1000;
+    background: rgba(37, 99, 235, 0.35);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    animation: fadeInDown 0.6s ease forwards;
+}
+
+.navbar h1 {
+    color: #ffffff;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin: 0;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* ===== CONTAINER ===== */
+.container {
+    max-width: 800px;
+    width: 100%;
+    margin: 160px auto 80px; /* jarak dari navbar */
+    padding: 0 20px;
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+/* ===== NOTE LIST ===== */
+.note-list h2 {
+    font-size: 18px;
+    color: #e0e7ff;
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+/* ===== NOTE ITEM ===== */
+.note-item {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.note-item:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 6px 25px rgba(255, 255, 255, 0.25);
+}
+
+.note-item h3 {
+    font-size: 17px;
+    color: #ffffff;
+    margin-bottom: 6px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.note-item p {
+    color: #f1f5f9;
+    line-height: 1.6;
+}
+
+/* ===== TOMBOL SUMMARIZE ===== */
+.note-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.btn-summarize {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: #fff;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.25);
+}
+
+.btn-summarize:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #059669, #047857);
+    box-shadow: 0 6px 14px rgba(16, 185, 129, 0.35);
+}
+
+/* ===== EMPTY STATE ===== */
+.empty {
+    color: rgba(255, 255, 255, 0.75);
+    font-style: italic;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* ===== FLOATING BUTTON (+) ===== */
+.btn-float {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: #fff;
+    font-size: 28px;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.3);
+    transition: all 0.35s ease;
+    z-index: 999;
+    animation: floatUp 0.9s ease forwards;
+}
+
+.btn-float:hover {
+    transform: scale(1.08);
+    background: linear-gradient(135deg, #1d4ed8, #2563eb);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+}
+
+/* ===== ANIMASI ===== */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes floatUp {
+    from {
+        opacity: 0;
+        transform: translateY(60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* === Form Container === */
+.note-form {
+    max-width: 500px;
+    margin: 3rem auto;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 2rem;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.note-form h2 {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 1.5rem;
+}
+
+/* === Input & Textarea === */
+label {
+    display: block;
+    color: #fff;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+    font-family: "Poppins", sans-serif;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* === Tombol Form (Kembali & Simpan) ===== */
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Tombol Kembali */
+.btn-back {
+    background: rgba(255, 255, 255, 0.15); /* efek kaca */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #fff;
+    padding: 0.7rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* Tombol Simpan */
+.btn-save {
+    background: linear-gradient(135deg, #10b981, #059669); /* hijau Noteva */
+    color: #fff;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+    transition: all 0.3s ease;
+}
+
+.btn-save:hover {
+    background: linear-gradient(135deg, #059669, #047857);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
+}
