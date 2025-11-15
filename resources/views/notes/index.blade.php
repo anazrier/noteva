@@ -23,26 +23,15 @@
                 @foreach ($notes as $note)
                     <div class="note-item">
                         <h3>{{ $note['judul'] }}</h3>
-                        <p>{{ $note['deskripsi'] }}</p>
 
+                        
+                        <p>{{ Str::limit($note->deskripsi, 150, '...') }}</p>
                         <div class="note-actions">
                             <!-- Tombol Edit -->
-                            <a href="{{ route('notes.edit', $note->id) }}" class="btn-edit">Edit</a>
-
-
-                            <!-- Tombol Hapus -->
-                            <form action="{{ route('notes.destroy', $note->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus catatan ini?')" style="display: inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn-delete">Hapus</button>
-                            </form>
-                        </div>
-
-                        <p>{{ Str::limit($note->deskripsi, 150, '...') }}</p>
-
-                        <div class="note-actions">
+                            <a href="{{ route('notes.show', $note->id) }}" class="btn-edit">Detail</a>
                             <button class="btn-summarize">Summarize AI</button>
                         </div>
+                        
                     </div>
                 @endforeach
             @else

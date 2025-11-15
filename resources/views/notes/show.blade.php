@@ -18,12 +18,12 @@
     <form action="{{ route('notes.update', $note->id) }}" method="POST" class="note-form">
         @csrf
         @method('PUT')
-
+        
         <label>Judul</label>
-        <input type="text" name="judul" value="{{ $note->judul }}" required>
+        <input type="text" name="judul" value="{{ $note->judul }}" readonly>
 
         <label>Deskripsi</label>
-        <textarea name="deskripsi" required>{{ $note->deskripsi }}</textarea>
+        <textarea name="deskripsi" readonly>{{ $note->deskripsi }}</textarea>
 
         @if($note->tanggal_perubahan)
             <p style="color: #fff; font-size: 0.9rem; margin-bottom: 10px;">
@@ -35,16 +35,10 @@
             <a href="{{ route('notes.index') }}" class="btn-back">← Kembali</a>
             <div class="buttons-right">
                 
-                <form action="{{ route('notes.update', $note->id) }}" method="POST" class="inline-form">
+                <form action="{{ route('notes.edit', $note->id) }}" method="POST" class="inline-form">
                     @csrf
                     @method('PUT')
-                    <button type="submit" class="btn-save">Simpan Perubahan</button>
-                </form>
-                <form action="{{ route('notes.destroy', $note->id) }}" method="POST"
-                    onsubmit="return confirm('Yakin ingin menghapus catatan ini?')" class="inline-form">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn-delete">Hapus</button>
+                    <a href="{{ route('notes.edit', $note->id) }}" class="btn-edit">edit</a>
                 </form>
             </div>
         </div>
