@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\AIController;
 
+Route::resource('notes', NotesController::class);
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
