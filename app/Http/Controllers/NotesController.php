@@ -16,6 +16,7 @@ class NotesController extends Controller
             'notes' => $notes
         ]);
     }
+
     public function create()
     {
         return view('notes.create');

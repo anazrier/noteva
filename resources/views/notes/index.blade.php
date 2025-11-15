@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <body>
+    <header class="navbar">
+        <h1>NOTEVA</h1>
+    </header>
 
     <header class="navbar">
         <h1>NOTEVA</h1>
@@ -35,6 +38,11 @@
                             </form>
                         </div>
 
+                        <p>{{ Str::limit($note->deskripsi, 150, '...') }}</p>
+
+                        <div class="note-actions">
+                            <button class="btn-summarize">Summarize AI</button>
+                        </div>
                     </div>
                 @endforeach
             @else
@@ -47,3 +55,4 @@
     <a href="/notes/create" class="btn-float">+</a>
 </body>
 </html>
+
