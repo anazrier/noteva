@@ -30,5 +30,9 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    'groq' => [
+        'api_key' => env('GROQ_API_KEY'),
+        'verify_ssl' => env('GROQ_VERIFY_SSL', true),
+    ],
 
 ];

@@ -33,7 +33,7 @@
                         <div class="note-actions">
                             <!-- Tombol Edit -->
                             <a href="{{ route('notes.show', $note->id) }}" class="btn-edit">Detail</a>
-                            <button class="btn-summarize">Summarize AI</button>
+                            <button class="btn-summarize" onclick="summarizeNote({{ $note->id }})">Summarize AI</button>
                         </div>
                         
                     </div>
@@ -42,6 +42,38 @@
                 <p class="empty">Belum ada catatan yang tersimpan.</p>
             @endif
         </div>
+<script>
+function summarizeNote(noteId) {
+    const button = event.target;
+    button.disabled = true;
+    button.textContent = 'Loading...';
 
+    fetch(`/notes/${noteId}/summarize`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            alert('Error: ' + data.message);
+        } else {
+            alert('Ringkasan: ' + data.summary);
+        }
+        button.disabled = false;
+        button.textContent = 'Summarize AI';
+    })
+    .catch(error => {
+        alert('Terjadi kesalahan: ' + error);
+        button.disabled = false;
+        button.textContent = 'Summarize AI';
+    });
+}
+</script>
+
+</body>
+</html>
 </body>
 </html>

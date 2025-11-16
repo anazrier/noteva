@@ -19,7 +19,9 @@ Route::resource('notes', NotesController::class);
 
 
 Route::resource('notes', NotesController::class);
-Route::post('/summarize', [AIController::class, 'summarize'])->name('ai.summarize');
+Route::post('/notes/{note}/summarize', [AIController::class, 'summarize'])->name('notes.summarize');
+Route::post('/notes/{note}/generate-todo', [AIController::class, 'generateTodo'])->name('notes.generateTodo');
+Route::post('/notes/{note}/update-todo-item', [AIController::class, 'updateTodoItem'])->name('notes.updateTodoItem');
 Route::get("/test-key", function() {
     return env("OPENAI_API_KEY");
 });

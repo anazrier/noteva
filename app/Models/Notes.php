@@ -11,6 +11,7 @@ class Notes extends Model
      protected $fillable = [
         'judul',
         'deskripsi',
+        'todo_list',
         'tanggal_perubahan',
     ];
 }
