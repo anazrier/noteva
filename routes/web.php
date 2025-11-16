@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NotesController;
+use App\Http\Controllers\AIController;
 
 Route::resource('notes', NotesController::class);
 
@@ -18,3 +19,10 @@ Route::resource('notes', NotesController::class);
 
 
 Route::resource('notes', NotesController::class);
+
+
+Route::post('/summarize', [AIController::class, 'summarize'])->name('ai.summarize');
+Route::get("/test-key", function() {
+    return env("OPENAI_API_KEY");
+});
+
