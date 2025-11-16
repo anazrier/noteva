@@ -11,6 +11,7 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
-        "openai": "^6.9.0"
+        "openai": "^6.9.0",
+        "sweetalert2": "^11.26.3"
     }
 }

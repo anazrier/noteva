@@ -40,20 +40,39 @@
                     @method('PUT')
                     <button type="submit" class="btn-save">Simpan Perubahan</button>
                 </form>
-                <form action="{{ route('notes.destroy', $note->id) }}" method="POST"
-                    onsubmit="return confirm('Yakin ingin menghapus catatan ini?')" class="inline-form">
+                <form action="{{ route('notes.destroy', $note->id) }}" method="POST" id="formHapus">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn-delete">Hapus</button>
+                    <button type="button" class="btn-delete" id="btnHapus">Hapus</button>
                 </form>
+
+                
             </div>
         </div>
 
-
-    
-
-
 </main>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js"></script>
+
+
+<script>
+document.getElementById('btnHapus').addEventListener('click', function () {
+    Swal.fire({
+        title: 'Yakin ingin menghapus?',
+        text: "Data ini tidak dapat dikembalikan.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Ya, hapus',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('formHapus').submit();
+        }
+    });
+});
+</script>
+
+
 
 
 </body>
