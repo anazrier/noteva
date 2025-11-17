@@ -313,6 +313,8 @@ textarea {
 .btn-edit {
     background: linear-gradient(135deg, #3b82f6, #2563eb);
     padding: 0.7rem 1.5rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .btn-edit:hover {
@@ -467,8 +469,9 @@ textarea {
     box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
 }
 
+
 /* ===========================
-   MODAL BACKDROP
+MODAL BACKDROP
 =========================== */
 .modal {
     display: none; 
@@ -485,7 +488,7 @@ textarea {
 }
 
 /* ===========================
-   MODAL CONTAINER
+MODAL CONTAINER
 =========================== */
 .modal-content {
     background: #ffffff;
@@ -544,4 +547,68 @@ textarea {
     from { opacity: 0; transform: translateY(-10px); }
     to   { opacity: 1; transform: translateY(0); }
 }
+
+
+/*to do list*/
+
+        .todo-list-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .todo-list-title {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .todo-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: all 0.3s;
+        }
+
+        .todo-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .todo-item.completed {
+            opacity: 0.6;
+        }
+
+        .todo-checkbox {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            cursor: pointer;
+            accent-color: #10b981;
+        }
+
+        .todo-text {
+            color: white;
+            flex: 1;
+            line-height: 1.6;
+        }
+
+        .todo-item.completed .todo-text {
+            text-decoration: line-through;
+        }
+
+        .note-description {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            white-space: pre-wrap;
+        }
 
