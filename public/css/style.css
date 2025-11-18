@@ -312,8 +312,12 @@ textarea {
 /* Tombol Edit (biru) */
 .btn-edit {
     background: linear-gradient(135deg, #3b82f6, #2563eb);
+<<<<<<< HEAD
      margin-top: 10px;
     margin-bottom: 10px;
+=======
+    padding: 0.7rem 1.5rem;
+>>>>>>> c7d1f1763e62e4504419ef1ae5d41df1af62e01c
 }
 
 .btn-edit:hover {
@@ -325,6 +329,7 @@ textarea {
 /* Tombol Hapus (merah) */
 .btn-delete {
     background: linear-gradient(135deg, #ef4444, #dc2626);
+    padding: 0.7rem 1.5rem;
 }
 
 .btn-delete:hover {
@@ -405,7 +410,7 @@ textarea {
     background: linear-gradient(135deg, #10b981, #059669);
     color: #fff;
     border: none;
-    padding: 0.5rem 1.7rem;
+    padding: 0.7rem 1.5rem;
     border-radius: 10px;
     font-weight: 600;
     cursor: pointer;
@@ -467,6 +472,7 @@ textarea {
     box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
 }
 
+<<<<<<< HEAD
 /*to do list*/
 
         .todo-list-container {
@@ -529,3 +535,83 @@ textarea {
             margin-bottom: 20px;
             white-space: pre-wrap;
         }
+=======
+/* ===========================
+   MODAL BACKDROP
+=========================== */
+.modal {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    backdrop-filter: blur(2px);
+}
+
+/* ===========================
+   MODAL CONTAINER
+=========================== */
+.modal-content {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.25);
+    animation: fadeIn 0.25s ease-out;
+}
+
+/* Judul */
+.modal-content h3 {
+    margin-top: 0;
+    font-weight: 600;
+    color: #333;
+    font-size: 20px;
+}
+
+/* Summary Text */
+.modal-content pre {
+    background: #f5f5f5;
+    padding: 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #333;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    line-height: 1.6;
+}
+
+/* Tombol Tutup */
+.modal-close {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    transition: 0.2s;
+}
+
+.modal-close:hover {
+    background: #45a049;
+    transform: scale(1.05);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+>>>>>>> c7d1f1763e62e4504419ef1ae5d41df1af62e01c

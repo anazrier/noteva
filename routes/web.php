@@ -25,3 +25,10 @@ Route::post('/notes/{note}/update-todo-item', [AIController::class, 'updateTodoI
 Route::get("/test-key", function() {
     return env("OPENAI_API_KEY");
 });
+
+
+Route::post('/summarize', [AIController::class, 'summarize'])->name('ai.summarize');
+Route::get("/test-key", function() {
+    return env("OPENAI_API_KEY");
+});
+

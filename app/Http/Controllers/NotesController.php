@@ -58,7 +58,9 @@ class NotesController extends Controller
             'tanggal_perubahan' => Carbon::now(),
         ]);
 
-        return redirect()->route('notes.index', $note->id);
+
+        return redirect()->route('notes.index')->with('success', 'Perubahan berhasil disimpan!');
+
     }
 
     public function destroy(Notes $note)

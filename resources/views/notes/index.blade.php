@@ -4,17 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Noteva - Catatan Saya</title>
-
+    
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
-
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<<<<<<< HEAD
 <body>
 <header class="navbar">
     <h1>NOTEVA</h1>
 </header>
 
+=======
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js"></script>
+
+</head>
+
+<body>
+    @yield('content')
+>>>>>>> c7d1f1763e62e4504419ef1ae5d41df1af62e01c
     <header class="navbar">
         <h1>NOTEVA</h1>
     </header>
@@ -26,54 +34,47 @@
             @if (count($notes) > 0)
                 @foreach ($notes as $note)
                     <div class="note-item">
-                        <h3>{{ $note['judul'] }}</h3>
-
-                        
-                        <p>{{ Str::limit($note->deskripsi, 150, '...') }}</p>
+                        <h3>{{ $note->judul }}</h3>
+                        <p id="note-desc-{{ $note->id }}">{{ Str::limit($note->deskripsi, 150, '...') }}</p>
                         <div class="note-actions">
-                            <!-- Tombol Edit -->
                             <a href="{{ route('notes.show', $note->id) }}" class="btn-edit">Detail</a>
-                            <button class="btn-summarize" onclick="summarizeNote({{ $note->id }})">Summarize AI</button>
+                            <button class="btn-summarize" data-id="{{ $note->id }}">Summarize AI</button>
                         </div>
-                        
                     </div>
                 @endforeach
             @else
                 <p class="empty">Belum ada catatan yang tersimpan.</p>
             @endif
         </div>
+    </main>
+
+    <!-- Tombol tambah catatan -->
+    <a href="/notes/create" class="btn-float">+</a>
+
+    <!-- Modal AI Summary -->
+    <div id="aiModal" class="modal">
+        <div class="modal-content">
+            <h3>Ringkasan AI</h3>
+            <pre id="aiResult">Memproses...</pre>
+
+            <button class="modal-close" onclick="closeModal()">Tutup</button>
+        </div>
+    </div>
+
+    <script src="{{ asset('js/ai.js') }}"></script>
+
+
+    
+    @stack('scripts')
+
+    @if(session('success'))
 <script>
-function summarizeNote(noteId) {
-    const button = event.target;
-    button.disabled = true;
-    button.textContent = 'Loading...';
-
-    fetch(`/notes/${noteId}/summarize`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.error) {
-            alert('Error: ' + data.message);
-        } else {
-            alert('Ringkasan: ' + data.summary);
-        }
-        button.disabled = false;
-        button.textContent = 'Summarize AI';
-    })
-    .catch(error => {
-        alert('Terjadi kesalahan: ' + error);
-        button.disabled = false;
-        button.textContent = 'Summarize AI';
-    });
-}
+Swal.fire({
+    title: "{{ session('success') }}",
+    icon: "success",
+    draggable: true
+});
 </script>
-
-</body>
-</html>
+@endif
 </body>
 </html>

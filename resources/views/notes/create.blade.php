@@ -13,7 +13,7 @@
     </header>
 
     <main class="container">
-        <form method="POST" action="{{ route('notes.store') }}" class="note-form">
+        <form method="POST" action="{{ route('notes.store') }}" class="note-form" id="formSave">
             @csrf
 
             <label>Judul</label>
@@ -24,11 +24,37 @@
             
             <div class="form-buttons">
                 <a href="{{ route('notes.index') }}" class="btn-back">← Kembali</a>
-                <button type="submit" class="btn-save">Simpan</button>
+                <button type="button" class="btn-save" id="simpan">Simpan</button>
             </div>
         </form>
 
     </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+document.getElementById('simpan').addEventListener('click', function () {
+
+    Swal.fire({
+        title: "Simpan catatan ini?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Simpan",
+        denyButtonText: `Jangan Simpan`
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+            Swal.fire("Tersimpan!", "", "success");
+            document.getElementById('formSave').submit();
+
+        } else if (result.isDenied) {
+            Swal.fire("Perubahan tidak disimpan", "", "info");
+        }
+
+    });
+
+});
+</script>
 
 </body>
 </html>
