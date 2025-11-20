@@ -312,12 +312,9 @@ textarea {
 /* Tombol Edit (biru) */
 .btn-edit {
     background: linear-gradient(135deg, #3b82f6, #2563eb);
-<<<<<<< HEAD
      margin-top: 10px;
     margin-bottom: 10px;
-=======
     padding: 0.7rem 1.5rem;
->>>>>>> c7d1f1763e62e4504419ef1ae5d41df1af62e01c
 }
 
 .btn-edit:hover {
@@ -472,7 +469,6 @@ textarea {
     box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
 }
 
-<<<<<<< HEAD
 /*to do list*/
 
         .todo-list-container {
@@ -535,7 +531,6 @@ textarea {
             margin-bottom: 20px;
             white-space: pre-wrap;
         }
-=======
 /* ===========================
    MODAL BACKDROP
 =========================== */
@@ -614,4 +609,3 @@ textarea {
     to   { opacity: 1; transform: translateY(0); }
 }
 
->>>>>>> c7d1f1763e62e4504419ef1ae5d41df1af62e01c

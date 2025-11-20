@@ -9,20 +9,10 @@
     
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<<<<<<< HEAD
-<body>
-<header class="navbar">
-    <h1>NOTEVA</h1>
-</header>
-
-=======
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js"></script>
-
 </head>
 
 <body>
-    @yield('content')
->>>>>>> c7d1f1763e62e4504419ef1ae5d41df1af62e01c
     <header class="navbar">
         <h1>NOTEVA</h1>
     </header>
@@ -47,7 +37,7 @@
             @endif
         </div>
     </main>
-
+    
     <!-- Tombol tambah catatan -->
     <a href="/notes/create" class="btn-float">+</a>
 
@@ -56,25 +46,20 @@
         <div class="modal-content">
             <h3>Ringkasan AI</h3>
             <pre id="aiResult">Memproses...</pre>
-
             <button class="modal-close" onclick="closeModal()">Tutup</button>
         </div>
     </div>
 
     <script src="{{ asset('js/ai.js') }}"></script>
 
-
-    
-    @stack('scripts')
-
     @if(session('success'))
-<script>
-Swal.fire({
-    title: "{{ session('success') }}",
-    icon: "success",
-    draggable: true
-});
-</script>
-@endif
+    <script>
+        Swal.fire({
+            title: "{{ session('success') }}",
+            icon: "success",
+            draggable: true
+        });
+    </script>
+    @endif
 </body>
 </html>
