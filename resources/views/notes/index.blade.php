@@ -31,8 +31,9 @@
                         <div class="note-actions">
                             <a href="{{ route('notes.show', $note->id) }}" class="btn-edit">Detail</a>
 
-                            <button class="btn-summarize" onclick="summarizeNote({{ $note->id }})">Summarize AI</button>
+                            <button class="btn-summarize" data-id="({{ $note->id }})">Summarize AI</button>
 
+                            
                         </div>
                     </div>
                 @endforeach
@@ -42,47 +43,16 @@
         </div>
     </main>
 
-<script>
-function summarizeNote(noteId) {
-    const button = event.target;
-    button.disabled = true;
-    button.textContent = 'Loading...';
-
-    fetch(`/notes/${noteId}/summarize`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.error) {
-            alert('Error: ' + data.message);
-        } else {
-            alert('Ringkasan: ' + data.summary);
-        }
-        button.disabled = false;
-        button.textContent = 'Summarize AI';
-    })
-    .catch(error => {
-        alert('Terjadi kesalahan: ' + error);
-        button.disabled = false;
-        button.textContent = 'Summarize AI';
-    });
-}
-</script>
 
 
     <!-- Tombol tambah catatan -->
     <a href="/notes/create" class="btn-float">+</a>
 
-    <!-- Modal AI Summary -->
+ <!-- Modal AI Summary -->
     <div id="aiModal" class="modal">
         <div class="modal-content">
             <h3>Ringkasan AI</h3>
             <pre id="aiResult">Memproses...</pre>
-
             <button class="modal-close" onclick="closeModal()">Tutup</button>
         </div>
     </div>
