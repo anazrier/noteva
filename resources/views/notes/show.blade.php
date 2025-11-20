@@ -41,7 +41,7 @@
 
             <!-- Tombol Generate To-Do -->
             <button type="button"
-                class="btn-edit"
+                class="btn-generate"
                 onclick="generateTodoList({{ $note->id }})">
                 ✅ Generate To-Do List
             </button>
