@@ -15,6 +15,8 @@
 <body>
     <header class="navbar">
         <h1>NOTEVA</h1>
+        <button class="btn-pin" onclick="openPinModal()">📌 Pin Catatan</button>
+
     </header>
 
     <main class="container">
@@ -38,17 +40,36 @@
         </div>
     </main>
     
-    <!-- Tombol tambah catatan -->
-    <a href="/notes/create" class="btn-float">+</a>
-
     <!-- Modal AI Summary -->
-    <div id="aiModal" class="modal">
+    <div id="aiModal" class="modal" style="display:none;">
         <div class="modal-content">
             <h3>Ringkasan AI</h3>
             <pre id="aiResult">Memproses...</pre>
             <button class="modal-close" onclick="closeModal()">Tutup</button>
         </div>
     </div>
+    <!-- Tombol tambah catatan -->
+    <a href="/notes/create" class="btn-float">+</a>
+
+
+    <div id="pinModal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <h3>Pilih Catatan untuk di-PIN</h3>
+
+        @foreach ($notes as $note)
+            <div class="pin-item">
+                <span>{{ $note->judul }}</span>
+                <button onclick="pinNote({{ $note->id }})" 
+                        class="btn-pin-action">
+                    {{ $note->is_pinned ? 'Unpin' : 'Pin' }}
+                </button>
+            </div>
+        @endforeach
+
+        <button class="btn-close" onclick="closePinModal()">Tutup</button>
+    </div>
+</div>
+
 
     <script src="{{ asset('js/ai.js') }}"></script>
 
@@ -61,5 +82,37 @@
         });
     </script>
     @endif
+
+    <script>
+    function openPinModal() {
+        document.getElementById('pinModal').style.display = 'block';
+    }
+
+    function closePinModal() {
+        document.getElementById('pinModal').style.display = 'none';
+    }
+
+    function pinNote(id) {
+        fetch(`/notes/${id}/pin`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            Swal.fire({
+                title: "Berhasil!",
+                text: data.message,
+                icon: "success"
+            }).then(() => {
+                location.reload();
+            });
+        });
+    }
+    </script>
+
+
 </body>
 </html>

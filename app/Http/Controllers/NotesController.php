@@ -10,11 +10,13 @@ class NotesController extends Controller
 {
     public function index()
     {
-        $notes = Notes::orderBy('created_at', 'desc')->get();
 
-        return view('notes.index', [
-            'notes' => $notes
-        ]);
+        $notes = Notes::orderBy('is_pinned', 'DESC')
+            ->orderBy('updated_at', 'DESC')
+            ->get();
+
+
+        return view('notes.index', compact('notes'));
     }
 
     public function create()
@@ -60,7 +62,7 @@ class NotesController extends Controller
 
 
         return redirect()->route('notes.index')->with('success', 'Perubahan berhasil disimpan!');
-
+        return redirect()->back()->with('success', 'To Do List berhasil digenerate!');
     }
 
     public function destroy(Notes $note)
@@ -71,10 +73,24 @@ class NotesController extends Controller
     }
 
     public function edit(Notes $note)
-{
-    return view('notes.edit', compact('note'));
-}
+    {
+        return view('notes.edit', compact('note'));
+    }
+
+    public function togglePin($id)
+    {
+        $note = Note::findOrFail($id);
+
+        // toggle
+        $note->is_pinned = !$note->is_pinned;
+        $note->save();
+
+        return response()->json([
+            'message' => $note->is_pinned 
+                ? 'Catatan berhasil di-pin!' 
+                : 'Catatan di-unpin!'
+        ]);
+    }
+
 
 }
-
-

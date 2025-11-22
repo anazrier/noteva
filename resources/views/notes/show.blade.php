@@ -86,6 +86,19 @@
 
     <!-- AI Features JS -->
     <script src="{{ asset('js/ai-features.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @if(session('success'))
+    <script>
+        Swal.fire({
+            title: "Berhasil!",
+            text: "{{ session('success') }}",
+            icon: "success",
+            confirmButtonText: "OK",
+            confirmButtonColor: "#4F46E5"
+        });
+    </script>
+    @endif
 
 </body>
 

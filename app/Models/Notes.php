@@ -13,5 +13,9 @@ class Notes extends Model
         'deskripsi',
         'todo_list',
         'tanggal_perubahan',
+        'title',
+        'content',
     ];
+
+
 }
