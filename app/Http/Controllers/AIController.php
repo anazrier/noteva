@@ -202,4 +202,116 @@ class AiController extends Controller
             ], 500);
         }
     }
+
+    // ========== FUNCTION REWRITE (Perbaiki Bahasa) ==========
+    public function rewrite(Request $request, $id)
+    {
+        $note = Notes::findOrFail($id);
+        $text = $note->deskripsi;
+
+        if (!$text) {
+            return response()->json([
+                'error' => true,
+                'message' => 'Teks tidak boleh kosong'
+            ]);
+        }
+
+        try {
+            $response = Http::withOptions([
+                'verify' => config('services.groq.verify_ssl')
+            ])->withHeaders([
+                'Authorization' => 'Bearer ' . env('GROQ_API_KEY'),
+                'Content-Type' => 'application/json',
+            ])->timeout(30)->post("https://api.groq.com/openai/v1/chat/completions", [
+                "model" => "llama-3.3-70b-versatile",
+                "messages" => [
+                    [
+                        "role" => "system",
+                        "content" => "Kamu adalah asisten ahli bahasa Indonesia yang bertugas memperbaiki tata bahasa, ejaan, dan struktur kalimat. Perbaiki teks menjadi lebih formal, jelas, dan mudah dipahami. PENTING: Jangan ubah makna atau isi, hanya perbaiki bahasanya."
+                    ],
+                    [
+                        "role" => "user",
+                        "content" => "Perbaiki tata bahasa dan ejaan teks berikut:\n\n" . $text
+                    ]
+                ],
+                "temperature" => 0.3,
+                "max_tokens" => 1500,
+            ]);
+
+            if ($response->failed()) {
+                return response()->json([
+                    "error" => true,
+                    "message" => "API Error: " . $response->body()
+                ], $response->status());
+            }
+
+            $json = $response->json();
+
+            return response()->json([
+                "error" => false,
+                "rewritten" => $json["choices"][0]["message"]["content"] ?? "Tidak ada hasil"
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                "error" => true,
+                "message" => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    // ========== FUNCTION EXPAND (Kembangkan Catatan) ==========
+    public function expand(Request $request, $id)
+    {
+        $note = Notes::findOrFail($id);
+        $text = $note->deskripsi;
+
+        if (!$text) {
+            return response()->json([
+                'error' => true,
+                'message' => 'Teks tidak boleh kosong'
+            ]);
+        }
+
+        try {
+            $response = Http::withOptions([
+                'verify' => config('services.groq.verify_ssl')
+            ])->withHeaders([
+                'Authorization' => 'Bearer ' . env('GROQ_API_KEY'),
+                'Content-Type' => 'application/json',
+            ])->timeout(30)->post("https://api.groq.com/openai/v1/chat/completions", [
+                "model" => "llama-3.3-70b-versatile",
+                "messages" => [
+                    [
+                        "role" => "system",
+                        "content" => "Kamu adalah asisten yang ahli mengembangkan dan memperluas catatan. Tugasmu adalah menambahkan detail, penjelasan, dan elaborasi pada teks yang diberikan. Buatlah teks menjadi lebih lengkap, informatif, dan mudah dipahami. Tambahkan contoh dan penjelasan yang relevan."
+                    ],
+                    [
+                        "role" => "user",
+                        "content" => "Kembangkan dan perluas catatan berikut menjadi lebih detail dan informatif:\n\n" . $text
+                    ]
+                ],
+                "temperature" => 0.7,
+                "max_tokens" => 2000,
+            ]);
+
+            if ($response->failed()) {
+                return response()->json([
+                    "error" => true,
+                    "message" => "API Error: " . $response->body()
+                ], $response->status());
+            }
+
+            $json = $response->json();
+
+            return response()->json([
+                "error" => false,
+                "expanded" => $json["choices"][0]["message"]["content"] ?? "Tidak ada hasil"
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                "error" => true,
+                "message" => $e->getMessage()
+            ], 500);
+        }
+    }
 }
