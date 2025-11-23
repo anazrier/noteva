@@ -11,24 +11,32 @@ function closeModal() {
     modal.style.display = "none";
 }
 
+// Tutup modal kalau klik overlay (area gelap di luar modal)
+function closeModalOnOverlay(event) {
+    const modal = document.getElementById("aiModal");
+    if (event.target === modal) {
+        closeModal();
+    }
+}
+
 // ============================
-// Fungsi utama Summarize AI
+// AI SUMMARIZE - Ringkas
 // ============================
 document.addEventListener("DOMContentLoaded", () => {
-    const buttons = document.querySelectorAll(".btn-summarize");
+    const summarizeButtons = document.querySelectorAll(".btn-summarize");
 
-    buttons.forEach((btn) => {
+    summarizeButtons.forEach((btn) => {
         btn.addEventListener("click", async () => {
             const id = btn.dataset.id;
             const desc = document.getElementById("note-desc-" + id).innerText;
             const csrf = document.querySelector('meta[name="csrf-token"]').content;
 
-            // Tampilkan modal dengan tulisan "Memproses..."
+            // Tampilkan modal & update title
             openModal();
-            document.getElementById("aiResult").innerText = "Memproses...";
+            document.getElementById("aiModalTitle").innerText = "📝 Ringkasan AI";
+            document.getElementById("aiResult").innerText = "Sedang meringkas...";
 
             try {
-                // FIX: Ubah URL jadi /notes/{id}/summarize
                 const response = await fetch(`/notes/${id}/summarize`, {
                     method: "POST",
                     headers: {
@@ -42,14 +50,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (result.error) {
                     document.getElementById("aiResult").innerText =
-                        "API ERROR:\n" + result.message;
+                        "❌ ERROR:\n" + result.message;
                 } else {
-                    document.getElementById("aiResult").innerText =
-                        result.summary;
+                    document.getElementById("aiResult").innerText = result.summary;
                 }
             } catch (err) {
                 document.getElementById("aiResult").innerText =
-                    "JS ERROR: " + err.message;
+                    "⚠️ KESALAHAN: " + err.message;
             }
         });
     });

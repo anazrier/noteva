@@ -28,7 +28,7 @@
                         <p id="note-desc-{{ $note->id }}">{{ Str::limit($note->deskripsi, 150, '...') }}</p>
                         <div class="note-actions">
                             <a href="{{ route('notes.show', $note->id) }}" class="btn-edit">Detail</a>
-                            <button class="btn-summarize" data-id="{{ $note->id }}">Summarize AI</button>
+                            <button class="btn-summarize" data-id="{{ $note->id }}">📝 Summarize</button>
                         </div>
                     </div>
                 @endforeach
@@ -41,12 +41,28 @@
     <!-- Tombol tambah catatan -->
     <a href="/notes/create" class="btn-float">+</a>
 
-    <!-- Modal AI Summary -->
-    <div id="aiModal" class="modal">
+    <!-- MODAL AI (UPDATED - Sama dengan show.blade.php) -->
+    <div id="aiModal" class="modal" onclick="closeModalOnOverlay(event)">
         <div class="modal-content">
-            <h3>Ringkasan AI</h3>
-            <pre id="aiResult">Memproses...</pre>
-            <button class="modal-close" onclick="closeModal()">Tutup</button>
+            <!-- Header Modal dengan Close Button -->
+            <div class="modal-header">
+                <h3 id="aiModalTitle">📝 Ringkasan AI</h3>
+                <button class="modal-close-icon" onclick="closeModal()" title="Tutup">×</button>
+            </div>
+            
+            <!-- Body Modal (Area Hasil AI) -->
+            <div class="modal-body">
+                <div id="aiResultContainer" class="result-container">
+                    <pre id="aiResult">Memproses...</pre>
+                </div>
+            </div>
+            
+            <!-- Footer Modal dengan Tombol Action -->
+            <div class="modal-footer">
+                <button class="btn-modal-close" onclick="closeModal()">
+                    <span>✓</span> Tutup
+                </button>
+            </div>
         </div>
     </div>
 
