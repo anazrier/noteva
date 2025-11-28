@@ -13,6 +13,7 @@
 </head>
 
 <body>
+
     <header class="navbar">
         <h1>NOTEVA</h1>
         <button class="btn-pin" onclick="openPinModal()">📌 Pin Catatan</button>
