@@ -18,51 +18,43 @@ body {
     transition: background 0.5s ease;
 }
 
-
-
 /* ===== NAVBAR ===== */
 .navbar {
     width: 100%;
     position: fixed;
     top: 0;
     left: 0;
-    padding: 18px 0;
+    padding: 20px 0;
     z-index: 1000;
 
     background: rgba(37, 99, 235, 0.35);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255,255,255,0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 
     display: flex;
     flex-direction: column; /* navbar = 2 baris */
-    align-items: center;    /* h1 tetap di tengah */
-    gap: 14px;
+    align-items: center; /* h1 tetap di tengah */
+    gap: 15px;
 }
-
-.navbar-flex {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
 
 .navbar h1 {
     color: #ffffff;
-    font-size: 26px;
+    font-size: 28px;
     font-weight: 700;
     letter-spacing: 2px;
     margin: 0;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
 }
-
-/* ===== Baris kedua (search + pin button) ===== */
-.nav-second-row {
+.nav-row {
     display: flex;
-    align-items: center;
+    align-items: center; /* KUNCI: Ratakan vertikal tepat di tengah */
     justify-content: center;
-    gap: 12px;
-    padding: 0 15px;
+    gap: 12px; /* Jarak antar elemen */
+    width: 100%;
+    max-width: 650px;
+    padding: 0 20px;
 }
+
 /* ===== CONTAINER ===== */
 .container {
     max-width: 800px;
@@ -603,24 +595,27 @@ textarea {
    MODAL CONTAINER
 =========================== */
 .modal-content {
-    background: #ffffff;
+    background: #ffffff; /* Background modal putih */
     padding: 25px;
-    border-radius: 15px;
+    border-radius: 20px;
     width: 90%;
-    max-width: 600px;
+    max-width: 500px; /* Sedikit lebih ramping */
     max-height: 80vh;
     overflow-y: auto;
     font-family: "Poppins", sans-serif;
-    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.25);
-    animation: fadeIn 0.25s ease-out;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    animation: scaleUp 0.3s ease forwards;
+    position: relative;
 }
 
 /* Judul */
 .modal-content h3 {
     margin-top: 0;
-    font-weight: 600;
-    color: #333;
-    font-size: 20px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #1e293b; /* Warna teks judul gelap */
+    text-align: center;
+    font-size: 22px;
 }
 
 /* Summary Text */
@@ -677,19 +672,19 @@ textarea {
     padding: 25px;
     border-radius: 20px;
     overflow-y: auto;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     -ms-border-radius: 20px;
     -o-border-radius: 20px;
 }
 
-.nodal-content::-webkit-scrollbar {
-    width: 8px;
+.modal-content::-webkit-scrollbar {
+    width: 6px;
 }
 
 .modal-content::-webkit-crollbar-thumb {
-    background: #c7c7c7;
+    background-color: rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -697,43 +692,105 @@ textarea {
     -o-border-radius: 10px;
 }
 
-
 /* ===== DAFTAR NOTE ===== */
 .pin-item {
-    padding: 10px 16px;
-    background: #ff4d6d;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    color: white;
-    font-weight: 600;
-    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Teks kiri, tombol kanan */
+
+    padding: 12px 16px;
+    margin-bottom: 12px;
+
+    /* Agar kontras dengan modal putih, kita beri background biru muda/glass */
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    border-radius: 12px;
+    color: #fff; /* Teks putih di atas background biru */
+
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.2);
+    transition: all 0.3s ease;
 }
 
+.pin-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(59, 130, 246, 0.3);
+}
+
+.pin-item span {
+    font-weight: 500;
+    font-size: 15px;
+    /* Agar teks panjang tidak merusak layout */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%;
+}
 /* ===== TOMBOL PIN/UNPIN ===== */
 .btn-pin {
-    height: 44px; /* MATCH */
-    padding: 0 18px;
+    /* Kita hapus position absolute agar dia nempel di sebelah search box */
+    position: static;
+    margin: 0;
+    height: 50px; /* Samakan tinggi dengan search box */
+    padding: 0 24px;
 
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 8px;
 
     border-radius: 12px;
-    border: 2px solid rgba(255,255,255,0.4);
-    background: rgba(255,255,255,0.25);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.2); /* Warna samakan dengan input */
     color: #ffffff;
-    font-size: 15px;
+    font-size: 16px; /* Samakan font size */
+    font-weight: 600;
     cursor: pointer;
 
     backdrop-filter: blur(4px);
-    transition: 0.2s ease;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-pin-action {
+    background: rgba(255, 255, 255, 0.2); /* Transparan putih */
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-pin-action:hover {
+    background: #fff;
+    color: #2563eb; /* Teks jadi biru saat hover */
+}
+
+.btn-close {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    background: #f1f5f9;
+    color: #64748b;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-close:hover {
+    background: #e2e8f0;
+    color: #334155;
 }
 
 .btn-pin:hover {
-    background: rgba(255,255,255,0.35);
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-
 
 .modal.hidden {
     display: none !important;
@@ -741,15 +798,24 @@ textarea {
 
 /* ===== ANIMATION ===== */
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes scaleUp {
-    from { transform: scale(0.85); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+    from {
+        transform: scale(0.85);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
-
 
 /* Animation */
 @keyframes fadeIn {
@@ -765,19 +831,110 @@ textarea {
 
 /* ===== SEARCH BOX STYLING ===== */
 .search-box {
-    width: 520px;
-    height: 44px;
+    flex: 1; /* Mengisi sisa ruang */
+    height: 50px; /* TINGGI FIXED */
+
+    /* Reset style bawaan input agar rata */
+    margin: 0;
+    padding: 0 20px; /* Padding kiri kanan saja */
 
     border-radius: 12px;
-    border: 2px solid rgba(255,255,255,0.4);
-    background: rgba(255,255,255,0.25);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.2);
     color: #fff;
-    font-size: 15px;
-    padding: 0 18px;
+    font-size: 16px; /* Font sedikit dibesarkan biar imbang */
+
     backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
 }
 
+.search-box:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.35);
+    border-color: #fff;
+}
 
 .search-box::placeholder {
-    color: rgba(255,255,255,0.8);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* =========================================
+   FIX FINAL: NAVBAR ALIGNMENT & PRECISION
+   (Paste di baris paling bawah style.css)
+========================================= */
+
+/* 1. Pastikan Container Baris Flexbox Rapi */
+.nav-row {
+    display: flex !important;
+    align-items: center !important; /* Paksa vertikal tengah */
+    justify-content: center !important;
+    gap: 12px;
+    width: 100%;
+    max-width: 650px;
+    padding: 0 20px;
+}
+
+/* 2. Reset Search Box (Timpa style global input) */
+input.search-box {
+    flex: 1; /* Isi sisa ruang */
+    height: 50px !important; /* Paksa tinggi 50px */
+    width: auto !important; /* Reset width 100% bawaan */
+
+    /* PENTING: Matikan margin/padding bawaan global */
+    margin: 0 !important;
+    padding: 0 20px !important;
+
+    /* Styling Visual */
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 16px;
+    line-height: normal; /* Reset line-height agar teks di tengah */
+
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+}
+
+input.search-box:focus {
+    background: rgba(255, 255, 255, 0.35);
+    outline: none;
+    border-color: #fff;
+}
+
+/* 3. Reset Tombol Pin (Samakan Persis) */
+button.btn-pin {
+    /* Reset posisi */
+    position: static !important;
+    transform: none !important;
+    margin: 0 !important;
+
+    /* Dimensi Wajib Sama */
+    height: 50px !important;
+    padding: 0 24px !important;
+
+    /* Flexbox Internal agar teks & icon di tengah */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px;
+
+    /* Styling Visual */
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+}
+
+button.btn-pin:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: translateY(-2px) !important; /* Animasi hover */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }

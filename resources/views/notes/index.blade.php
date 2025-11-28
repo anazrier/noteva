@@ -7,7 +7,7 @@
     
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}?v=123">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js"></script>
     <script src="{{ asset('js/search.js') }}"></script>
@@ -16,13 +16,16 @@
 </head>
 
 <body>
-        <nav class="navbar">
+<nav class="navbar">
     <h1>NOTEVA</h1>
 
-    <div class="navbar-flex">
+    <div class="nav-row">
         <input type="text" id="searchInput" placeholder="🔍 Cari catatan..." class="search-box">
-        <button class="btn-pin" onclick="openPinModal()">📌 Pin</button>
+        <button class="btn-pin" onclick="openPinModal()">
+            📌 Pin
+        </button>
     </div>
+
 </nav>
 
 
