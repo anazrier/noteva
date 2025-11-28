@@ -62,7 +62,7 @@ class NotesController extends Controller
 
 
         return redirect()->route('notes.index')->with('success', 'Perubahan berhasil disimpan!');
-        return redirect()->back()->with('success', 'To Do List berhasil digenerate!');
+        // return redirect()->back()->with('success', 'To Do List berhasil digenerate!');
     }
 
     public function destroy(Notes $note)
@@ -79,7 +79,7 @@ class NotesController extends Controller
 
     public function togglePin($id)
     {
-        $note = Note::findOrFail($id);
+        $note = Notes::findOrFail($id);
 
         // toggle
         $note->is_pinned = !$note->is_pinned;
@@ -90,6 +90,22 @@ class NotesController extends Controller
                 ? 'Catatan berhasil di-pin!' 
                 : 'Catatan di-unpin!'
         ]);
+    }
+    public function search(Request $request)
+    {
+        $keyword = $request->q;
+
+        if (empty($keyword)) {
+            return response()->json([]);
+        }
+
+        $notes = Notes::where('judul', 'LIKE', "%$keyword%")
+            ->orWhere('deskripsi', 'LIKE', "%$keyword%")
+            ->orderBy('is_pinned', 'DESC')
+            ->orderBy('updated_at', 'DESC')
+            ->get();
+
+        return response()->json($notes);
     }
 
 

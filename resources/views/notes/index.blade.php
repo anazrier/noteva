@@ -10,15 +10,22 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js"></script>
+    <script src="{{ asset('js/search.js') }}"></script>
+
+    
 </head>
 
 <body>
+        <nav class="navbar">
+    <h1>NOTEVA</h1>
 
-    <header class="navbar">
-        <h1>NOTEVA</h1>
-        <button class="btn-pin" onclick="openPinModal()">📌 Pin Catatan</button>
+    <div class="navbar-flex">
+        <input type="text" id="searchInput" placeholder="🔍 Cari catatan..." class="search-box">
+        <button class="btn-pin" onclick="openPinModal()">📌 Pin</button>
+    </div>
+</nav>
 
-    </header>
+
 
     <main class="container">
         <div class="note-list">
