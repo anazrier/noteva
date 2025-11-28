@@ -78,10 +78,11 @@
                 <a href="{{ route('notes.index') }}" class="btn-back">← Kembali</a>
                 <div class="buttons-right">
                     <a href="{{ route('notes.edit', $note->id) }}" class="btn-edit">✏️ Edit</a>
-                    <form action="{{ route('notes.destroy', $note->id) }}" method="POST" style="display: inline;">
+                    
+                    <form id="deleteForm" action="{{ route('notes.destroy', $note->id) }}" method="POST" style="display: inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn-delete" onclick="return confirm('Yakin ingin menghapus catatan ini?')">🗑️ Hapus</button>
+                        <button type="button" class="btn-delete" onclick="confirmDelete()">🗑️ Hapus</button>
                     </form>
                 </div>
             </div>
@@ -119,6 +120,28 @@
     <script src="{{ asset('js/dropdown.js') }}"></script>
     <script src="{{ asset('js/ai-features.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        function confirmDelete() {
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Catatan ini akan dihapus secara permanen!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#ef4444', // Merah
+                cancelButtonColor: '#3b82f6',  // Biru
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: 'Batal',
+                background: '#fff',
+                color: '#333'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Jika user klik Ya, submit form via ID
+                    document.getElementById('deleteForm').submit();
+                }
+            });
+        }
+    </script>
 
     @if(session('success'))
     <script>

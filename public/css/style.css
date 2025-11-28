@@ -127,11 +127,23 @@ body {
     margin-top: 10px;
 }
 
-.btn-edit,
+
 .btn-delete,
 .btn-summarize,
 .btn-detail {
     padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.btn-edit {
+    padding: 10px 16px;
     border-radius: 8px;
     font-weight: 600;
     font-size: 14px;
@@ -154,10 +166,13 @@ body {
 /* Delete (Red) */
 .btn-delete {
     background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
 }
 .btn-delete:hover {
     background: linear-gradient(135deg, #dc2626, #b91c1c);
     transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(239, 68, 68, 0.4);
 }
 
 /* Summarize (Green) */
@@ -241,11 +256,23 @@ textarea { resize: vertical; min-height: 120px; }
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
-.buttons-right { display: flex; gap: 10px; flex-direction: row-reverse; }
+.buttons-right { 
+    display: flex; 
+    align-items: center;
+    flex-direction: row-reverse;
+    gap: 12px; 
+}
 
-.btn-back, .btn-save {
+.button-right form{
+    margin: 0;
+    display: inline-block;
+}
+
+.btn-back, .btn-save, .btn-delete {
     padding: 0.7rem 1.5rem;
     border-radius: 10px;
     font-weight: 600;
@@ -253,6 +280,10 @@ textarea { resize: vertical; min-height: 120px; }
     text-decoration: none;
     border: none;
     cursor: pointer;
+    font-size: 14px;
+    display: inline-flex; /* Agar icon & teks rata */
+    align-items: center;
+    justify-content: center;
 }
 
 .btn-back {
@@ -260,13 +291,21 @@ textarea { resize: vertical; min-height: 120px; }
     color: #fff;
     backdrop-filter: blur(10px);
 }
-.btn-back:hover { background: rgba(255, 255, 255, 0.25); transform: translateY(-2px); }
+.btn-back:hover { 
+    background: rgba(255, 255, 255, 0.25); 
+    transform: translateY(-2px); 
+}
 
 .btn-save {
     background: linear-gradient(135deg, #10b981, #059669);
     color: #fff;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
 }
-.btn-save:hover { background: linear-gradient(135deg, #059669, #047857); transform: translateY(-2px); }
+.btn-save:hover { 
+    background: linear-gradient(135deg, #059669, #047857);
+    transform: translateY(-2px); 
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+}
 
 /* =========================================
    6. PIN ITEM & ACTIONS (Navbar)
@@ -601,15 +640,12 @@ button.btn-pin {
     position: static !important;
     transform: none !important;
     margin: 0 !important;
-
     height: 50px !important;
     padding: 0 24px !important;
-
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     gap: 8px;
-
     border-radius: 12px;
     border: 2px solid rgba(255, 255, 255, 0.4);
     background: rgba(255, 255, 255, 0.2);
@@ -618,9 +654,12 @@ button.btn-pin {
     font-weight: 600;
     cursor: pointer;
     white-space: nowrap;
-
     backdrop-filter: blur(4px);
     transition: all 0.3s ease;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
 }
 
 button.btn-pin:hover {
