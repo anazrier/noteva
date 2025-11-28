@@ -97,28 +97,7 @@
     <!-- Tombol tambah catatan -->
     <a href="/notes/create" class="btn-float">+</a>
 
-    <!-- MODAL AI (UPDATED - Sama dengan show.blade.php) -->
-    <div id="aiModal" class="modal" onclick="closeModalOnOverlay(event)">
-        <div class="modal-content">
-            <!-- Header Modal dengan Close Button -->
-            <div class="modal-header">
-                <h3 id="aiModalTitle">📝 Ringkasan AI</h3>
-                <button class="modal-close-icon" onclick="closeModal()" title="Tutup">×</button>
-            </div>
-            
-            <!-- Body Modal (Area Hasil AI) -->
-            <div class="modal-body">
-                <div id="aiResultContainer" class="result-container">
-                    <pre id="aiResult">Memproses...</pre>
-                </div>
-            </div>
-            
-            <!-- Footer Modal dengan Tombol Action -->
-            <div class="modal-footer">
-                <button class="btn-modal-close" onclick="closeModal()">
-                    <span>✓</span> Tutup
-                </button>
-            </div>
+    
 
     <div id="modalPin" class="modal" style="display: none;">
     <div class="modal-content">
