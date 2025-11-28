@@ -4,8 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\AIController;
 
-Route::resource('notes', NotesController::class);
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,20 +15,24 @@ Route::resource('notes', NotesController::class);
 |
 */
 
+// Redirect root URL ke notes index
+Route::get('/', function () {
+    return redirect()->route('notes.index');
+});
 
+// Resource routes untuk notes
+Route::resource('notes', NotesController::class);
 
+// AI routes
 Route::post('/notes/{note}/summarize', [AIController::class, 'summarize'])->name('notes.summarize');
 Route::post('/notes/{note}/generate-todo', [AIController::class, 'generateTodo'])->name('notes.generateTodo');
 Route::post('/notes/{note}/update-todo-item', [AIController::class, 'updateTodoItem'])->name('notes.updateTodoItem');
-Route::post('/notes/{id}/pin', [NoteController::class, 'togglePin'])->name('notes.pin');
-Route::get("/test-key", function() {
-    return env("OPENAI_API_KEY");
-});
 
+// Notes additional routes
+Route::post('/notes/{id}/pin', [NotesController::class, 'togglePin'])->name('notes.pin');
+Route::get('/search', [NotesController::class, 'search']);
 
-
-
-Route::post('/summarize', [AIController::class, 'summarize'])->name('ai.summarize');
+// Test route (sebaiknya dihapus di production)
 Route::get("/test-key", function() {
     return env("OPENAI_API_KEY");
 });

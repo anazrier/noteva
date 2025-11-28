@@ -25,15 +25,24 @@ body {
     top: 0;
     left: 0;
     padding: 18px 0;
-    text-align: center;
     z-index: 1000;
+
     background: rgba(37, 99, 235, 0.35);
     backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    animation: fadeInDown 0.6s ease forwards;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+
+    display: flex;
+    flex-direction: column; /* navbar = 2 baris */
+    align-items: center;    /* h1 tetap di tengah */
+    gap: 14px;
 }
+
+.navbar-flex {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
 
 .navbar h1 {
     color: #ffffff;
@@ -44,11 +53,19 @@ body {
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
 }
 
+/* ===== Baris kedua (search + pin button) ===== */
+.nav-second-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 0 15px;
+}
 /* ===== CONTAINER ===== */
 .container {
     max-width: 800px;
     width: 100%;
-    margin: 160px auto 80px; /* jarak dari navbar */
+    margin: 180px auto 80px; /* jarak dari navbar */
     padding: 0 20px;
     animation: fadeInUp 0.8s ease forwards;
 }
@@ -681,48 +698,44 @@ textarea {
 
 /* ===== DAFTAR NOTE ===== */
 .pin-item {
-    background: #f8f8f8;
-    padding: 12px 15px;
-    margin-bottom: 12px;
-    border-radius: 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
-
+    padding: 10px 16px;
+    background: #ff4d6d;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+    font-weight: 600;
+    transition: 0.2s;
 }
 
 /* ===== TOMBOL PIN/UNPIN ===== */
-.btn-pin-action {
-    background: #6c5ce7;
-    color: white;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 10px;
+.btn-pin {
+    height: 44px; /* MATCH */
+    padding: 0 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+    border: 2px solid rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.25);
+    color: #ffffff;
+    font-size: 15px;
     cursor: pointer;
+
+    backdrop-filter: blur(4px);
     transition: 0.2s ease;
 }
 
-.btn-close {
-    width: 100%;
-    background: #d63031;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 12px;
-    margin-top: 15px;
-    cursor: pointer;
-    transition: 0.2s;
+.btn-pin:hover {
+    background: rgba(255,255,255,0.35);
 }
+
 
 .modal.hidden {
     display: none !important;
 }
-
-
 
 /* ===== ANIMATION ===== */
 @keyframes fadeIn {
@@ -746,4 +759,23 @@ textarea {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* ===== SEARCH BOX STYLING ===== */
+.search-box {
+    width: 520px;
+    height: 44px;
+
+    border-radius: 12px;
+    border: 2px solid rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.25);
+    color: #fff;
+    font-size: 15px;
+    padding: 0 18px;
+    backdrop-filter: blur(4px);
+}
+
+
+.search-box::placeholder {
+    color: rgba(255,255,255,0.8);
 }
