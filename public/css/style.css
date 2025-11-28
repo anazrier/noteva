@@ -1,4 +1,6 @@
-/* ===== RESET & FONT ===== */
+/* =========================================
+   1. RESET & BASIC STYLES
+========================================= */
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +8,6 @@
     font-family: "Poppins", sans-serif;
 }
 
-/* ===== BODY ===== */
 body {
     margin: 0;
     font-family: "Poppins", sans-serif;
@@ -18,42 +19,56 @@ body {
     transition: background 0.5s ease;
 }
 
-/* ===== NAVBAR ===== */
+/* =========================================
+   2. NAVBAR STRUCTURE
+========================================= */
 .navbar {
     width: 100%;
     position: fixed;
     top: 0;
     left: 0;
-    padding: 18px 0;
-    text-align: center;
+    padding: 20px 0;
     z-index: 1000;
     background: rgba(37, 99, 235, 0.35);
     backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    animation: fadeInDown 0.6s ease forwards;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
 }
 
 .navbar h1 {
     color: #ffffff;
-    font-size: 26px;
+    font-size: 28px;
     font-weight: 700;
     letter-spacing: 2px;
     margin: 0;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
 }
 
-/* ===== CONTAINER ===== */
+/* Wrapper Search & Pin (Basic) */
+.nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 650px;
+    padding: 0 20px;
+}
+
+/* =========================================
+   3. CONTAINER & NOTES
+========================================= */
 .container {
     max-width: 800px;
     width: 100%;
-    margin: 160px auto 80px; /* jarak dari navbar */
+    margin: 180px auto 80px;
     padding: 0 20px;
     animation: fadeInUp 0.8s ease forwards;
 }
 
-/* ===== NOTE LIST ===== */
 .note-list h2 {
     font-size: 18px;
     color: #e0e7ff;
@@ -63,7 +78,6 @@ body {
     letter-spacing: 1px;
 }
 
-/* ===== NOTE ITEM ===== */
 .note-item {
     background: rgba(255, 255, 255, 0.15);
     border-radius: 14px;
@@ -93,41 +107,84 @@ body {
     line-height: 1.6;
 }
 
-/* ===== TOMBOL SUMMARIZE ===== */
+.note-description {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    white-space: pre-wrap;
+}
+
+/* =========================================
+   4. BUTTONS & ACTIONS
+========================================= */
 .note-actions {
     display: flex;
     justify-content: flex-end;
+    gap: 10px;
     margin-top: 10px;
 }
 
+
+.btn-delete,
+.btn-summarize,
+.btn-detail {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.btn-edit {
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+/* Edit (Blue) */
+.btn-edit, .btn-detail {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+.btn-edit:hover, .btn-detail:hover {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    transform: translateY(-2px);
+}
+
+/* Delete (Red) */
+.btn-delete {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+.btn-delete:hover {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(239, 68, 68, 0.4);
+}
+
+/* Summarize (Green) */
 .btn-summarize {
     background: linear-gradient(135deg, #10b981, #059669);
-    color: #fff;
-    border: none;
-    padding: 8px 18px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.25);
 }
-
 .btn-summarize:hover {
-    transform: translateY(-2px);
     background: linear-gradient(135deg, #059669, #047857);
-    box-shadow: 0 6px 14px rgba(16, 185, 129, 0.35);
+    transform: translateY(-2px);
 }
 
-/* ===== EMPTY STATE ===== */
-.empty {
-    color: rgba(255, 255, 255, 0.75);
-    font-style: italic;
-    text-align: center;
-    margin-top: 20px;
-}
-
-/* ===== FLOATING BUTTON (+) ===== */
+/* Floating Button (+) */
 .btn-float {
     position: fixed;
     right: 25px;
@@ -148,224 +205,14 @@ body {
     z-index: 999;
     animation: floatUp 0.9s ease forwards;
 }
-
 .btn-float:hover {
     transform: scale(1.08);
     background: linear-gradient(135deg, #1d4ed8, #2563eb);
-    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
 }
 
-/* ===== ANIMASI ===== */
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes floatUp {
-    from {
-        opacity: 0;
-        transform: translateY(60px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* === Form Container === */
-.note-form {
-    max-width: 500px;
-    margin: 3rem auto;
-    background: rgba(255, 255, 255, 0.15);
-    padding: 2rem;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.note-form h2 {
-    text-align: center;
-    color: #fff;
-    margin-bottom: 1.5rem;
-}
-
-/* === Input & Textarea === */
-label {
-    display: block;
-    color: #fff;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-}
-
-input[type="text"],
-textarea {
-    width: 100%;
-    padding: 0.8rem;
-    border-radius: 8px;
-    border: none;
-    margin-bottom: 1.2rem;
-    font-size: 1rem;
-    font-family: "Poppins", sans-serif;
-}
-
-textarea {
-    resize: vertical;
-    min-height: 120px;
-}
-
-/* === Tombol Form (Kembali & Simpan) ===== */
-.form-buttons {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.buttons-right {
-    display: flex;
-    gap: 10px;
-    flex-direction: row-reverse;
-}
-
-.inline-form {
-    display: inline;
-}
-
-/* Tombol Kembali */
-.btn-back {
-    background: rgba(255, 255, 255, 0.15); /* efek kaca */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    color: #fff;
-    padding: 0.7rem 1.5rem;
-    border-radius: 10px;
-    font-weight: 600;
-    text-decoration: none;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-}
-
-.btn-back:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
-}
-
-/* Tombol Simpan */
-.btn-save {
-    background: linear-gradient(135deg, #10b981, #059669); /* hijau Noteva */
-    color: #fff;
-    border: none;
-    padding: 0.7rem 1.5rem;
-    border-radius: 10px;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
-    transition: all 0.3s ease;
-}
-
-.btn-save:hover {
-    background: linear-gradient(135deg, #059669, #047857);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
-}
-
-/* ===== NOTE ACTION BUTTONS (Edit, Hapus, Summarize) ===== */
-.note-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.btn-edit,
-.btn-delete,
-.btn-summarize {
-    padding: 8px 16px;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 14px;
-    cursor: pointer;
-    border: none;
-    color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-}
-
-/* Tombol Edit (biru) */
-.btn-edit {
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
-     margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 0.7rem 1.5rem;
-}
-
-.btn-edit:hover {
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(37, 99, 235, 0.25);
-}
-
-/* Tombol Hapus (merah) */
-.btn-delete {
-    background: linear-gradient(135deg, #ef4444, #dc2626);
-    padding: 0.7rem 1.5rem;
-}
-
-.btn-delete:hover {
-    background: linear-gradient(135deg, #dc2626, #b91c1c);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(239, 68, 68, 0.25);
-}
-
-/* Tombol Summarize (hijau) */
-.btn-summarize {
-    background: linear-gradient(135deg, #10b981, #059669);
-}
-
-.btn-summarize:hover {
-    background: linear-gradient(135deg, #059669, #047857);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(16, 185, 129, 0.25);
-}
-
-/* ===== FORM CREATE & EDIT ===== */
-.btn-detail {
-    background: linear-gradient(135deg, #3b82f6, #2563eb); /* biru */
-    color: #fff;
-    padding: 8px 16px;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 14px;
-    cursor: pointer;
-    border: none;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-}
-
-.btn-detail:hover {
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(37, 99, 235, 0.25);
-}
-
+/* =========================================
+   5. FORMS
+========================================= */
 .note-form {
     max-width: 500px;
     margin: 3rem auto;
@@ -377,15 +224,22 @@ textarea {
     animation: fadeInUp 0.8s ease forwards;
 }
 
-.note-form label {
+.note-form h2 {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 1.5rem;
+}
+
+label {
     display: block;
     color: #fff;
     font-weight: 500;
     margin-bottom: 0.5rem;
 }
 
-.note-form input[type="text"],
-.note-form textarea {
+/* Style input dasar (akan di-override search box di bawah) */
+input[type="text"],
+textarea {
     width: 100%;
     padding: 0.8rem;
     border-radius: 8px;
@@ -396,71 +250,178 @@ textarea {
     background: rgba(255, 255, 255, 0.1);
     color: #fff;
 }
+textarea { resize: vertical; min-height: 120px; }
 
-.note-form textarea {
-    resize: vertical;
-    min-height: 120px;
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+.buttons-right { 
+    display: flex; 
+    align-items: center;
+    flex-direction: row-reverse;
+    gap: 12px; 
 }
 
-/* Tombol Simpan */
+.button-right form{
+    margin: 0;
+    display: inline-block;
+}
+
+.btn-back, .btn-save, .btn-delete {
+    padding: 0.7rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    display: inline-flex; /* Agar icon & teks rata */
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-back {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    backdrop-filter: blur(10px);
+}
+.btn-back:hover { 
+    background: rgba(255, 255, 255, 0.25); 
+    transform: translateY(-2px); 
+}
+
 .btn-save {
     background: linear-gradient(135deg, #10b981, #059669);
     color: #fff;
-    border: none;
-    padding: 0.7rem 1.5rem;
-    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+.btn-save:hover { 
+    background: linear-gradient(135deg, #059669, #047857);
+    transform: translateY(-2px); 
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+}
+
+/* =========================================
+   6. PIN ITEM & ACTIONS (Navbar)
+========================================= */
+/* Pin Item di List Modal */
+.pin-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    border-radius: 12px;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.2);
+    transition: all 0.3s ease;
+}
+.pin-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(59, 130, 246, 0.3);
+}
+.pin-item span {
+    font-weight: 500;
+    font-size: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%;
+}
+
+/* Action Button inside Pin List */
+.btn-pin-action {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 13px;
     font-weight: 600;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
 }
+.btn-pin-action:hover { background: #fff; color: #2563eb; }
 
-.btn-save:hover {
-    background: linear-gradient(135deg, #059669, #047857);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
-}
 
-/* Tombol Kembali */
-.btn-back {
-    display: inline-block;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    color: #fff;
-    padding: 0.7rem 1.5rem;
-    border-radius: 10px;
-    font-weight: 600;
-    text-decoration: none;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-}
-
-.btn-back:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
-}
-
-/* ===== FLOATING BUTTON (+) ===== */
-.btn-float {
+/* =========================================
+   7. MODAL SYSTEM (New Feature Merged)
+========================================= */
+.modal {
+    display: none;
     position: fixed;
-    right: 25px;
-    bottom: 25px;
-    background: linear-gradient(135deg, #2563eb, #3b82f6);
-    color: #fff;
-    font-size: 28px;
-    font-weight: bold;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 20px;
+    max-width: 700px;
+    width: 90%;
+    max-height: 80vh;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.4s ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Modal Header (Fitur Baru) */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.modal-header h3 {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Close Icon (X) */
+.modal-close-icon {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 300;
+    cursor: pointer;
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-decoration: none;
-    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.3);
-    transition: all 0.35s ease;
-    z-index: 999;
-    animation: floatUp 0.9s ease forwards;
+    transition: all 0.3s ease;
+    padding: 0;
+    line-height: 1;
+}
+.modal-close-icon:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
 }
 
 .btn-float:hover {
@@ -612,6 +573,7 @@ textarea {
     background: #ffffff;
 }
 
+/* Result Container */
 .result-container {
     background: #f8f9fa;
     border-radius: 12px;
@@ -633,23 +595,17 @@ textarea {
     overflow-y: auto;
 }
 
-/* Scrollbar untuk hasil AI */
-.result-container pre::-webkit-scrollbar {
+/* Scrollbar Custom */
+.result-container pre::-webkit-scrollbar,
+.modal-body::-webkit-scrollbar,
+.modal-content::-webkit-scrollbar {
     width: 8px;
 }
-
-.result-container pre::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.05);
-    border-radius: 10px;
-}
-
-.result-container pre::-webkit-scrollbar-thumb {
+.result-container pre::-webkit-scrollbar-thumb,
+.modal-body::-webkit-scrollbar-thumb,
+.modal-content::-webkit-scrollbar-thumb {
     background: #667eea;
     border-radius: 10px;
-}
-
-.result-container pre::-webkit-scrollbar-thumb:hover {
-    background: #5568d3;
 }
 
 /* Modal Footer */
@@ -661,7 +617,7 @@ textarea {
     justify-content: flex-end;
 }
 
-.btn-modal-close {
+.btn-modal-close, .btn-close {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: #fff;
     border: none;
@@ -674,68 +630,18 @@ textarea {
     box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
 }
-
-.btn-modal-close:hover {
+.btn-modal-close:hover, .btn-close:hover {
     background: linear-gradient(135deg, #5568d3 0%, #6b42a0 100%);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 }
 
-.btn-modal-close span {
-    font-size: 18px;
-}
 
-/* Animasi */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .modal-content {
-        width: 95%;
-        max-height: 85vh;
-    }
-
-    .modal-header {
-        padding: 20px;
-    }
-
-    .modal-header h3 {
-        font-size: 18px;
-    }
-
-    .modal-body {
-        padding: 20px;
-    }
-
-    .result-container pre {
-        font-size: 14px;
-    }
-
-    .modal-footer {
-        padding: 15px 20px;
-    }
-}
-/* ===== DROPDOWN AI FEATURES ===== */
+/* =========================================
+   8. AI DROPDOWN (New Feature Merged)
+========================================= */
 .ai-dropdown {
     position: relative;
     display: inline-block;
@@ -751,13 +657,14 @@ textarea {
     border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    transition: 0.2s;
     font-size: 14px;
     width: 100%;
     text-align: left;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: all 0.3s ease;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
@@ -772,9 +679,9 @@ textarea {
     font-size: 12px;
 }
 
-/* DROPDOWN CONTENT (Menu yang muncul) */
+/* Dropdown Content */
 .dropdown-content {
-    display: none; /* Hidden by default */
+    display: none;
     position: absolute;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
@@ -788,12 +695,10 @@ textarea {
     animation: slideDown 0.3s ease;
 }
 
-/* Show dropdown kalau ada class "show" */
 .dropdown-content.show {
     display: block;
 }
 
-/* Dropdown Item */
 .dropdown-item {
     color: #1f2937;
     padding: 12px 20px;
@@ -808,25 +713,114 @@ textarea {
     font-size: 14px;
     transition: all 0.2s ease;
 }
-
 .dropdown-item:hover {
     background: rgba(139, 92, 246, 0.1);
     color: #8b5cf6;
 }
-
-/* Border antara item */
 .dropdown-item:not(:last-child) {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-/* Animasi dropdown */
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
+/* =========================================
+   9. ANIMATIONS
+========================================= */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes floatUp { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: translateY(0); } }
+
+/* =========================================
+   10. FIX FINAL: NAVBAR & SEARCH (Important)
+   Pastikan ini ada di paling bawah!
+========================================= */
+
+/* Pastikan Container Baris Flexbox Rapi */
+.nav-row {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px;
+    width: 100%;
+    max-width: 650px;
+    padding: 0 20px;
+}
+
+/* Reset Search Box (Timpa style global input) */
+input.search-box {
+    flex: 1;
+    height: 50px !important;
+    width: auto !important;
+    /* PENTING: Matikan margin/padding bawaan global */
+    margin: 0 !important;
+    padding: 0 20px !important;
+
+    /* Styling Visual */
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 16px;
+    line-height: normal;
+
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+}
+
+input.search-box:focus {
+    background: rgba(255, 255, 255, 0.35);
+    outline: none;
+    border-color: #fff;
+}
+input.search-box::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Reset Tombol Pin (Samakan Persis) */
+button.btn-pin {
+    position: static !important;
+    transform: none !important;
+    margin: 0 !important;
+    height: 50px !important;
+    padding: 0 24px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px;
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+
+button.btn-pin:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.modal.hidden {
+    display: none !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        max-height: 85vh;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    .nav-row {
+        max-width: 100%;
+        padding: 0 10px;
     }
 }

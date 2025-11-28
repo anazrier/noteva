@@ -9,13 +9,19 @@ use Illuminate\Support\Carbon;
 class NotesController extends Controller
 {
     public function index()
-    {
-        $notes = Notes::orderBy('created_at', 'desc')->get();
+{
+    // 1. Ambil semua notes (sesuai kode aslimu)
+    $notes = Notes::orderBy('is_pinned', 'DESC')
+        ->orderBy('updated_at', 'DESC')
+        ->get();
 
-        return view('notes.index', [
-            'notes' => $notes
-        ]);
-    }
+    // 2. Filter dari hasil di atas untuk mendapatkan yang di-pin saja
+    // (Kita pakai filter collection supaya tidak query database 2 kali)
+    $pinnedNotes = $notes->where('is_pinned', 1);
+
+    // 3. Kirim KEDUA variabel ke view
+    return view('notes.index', compact('notes', 'pinnedNotes'));
+}
 
     public function create()
     {
@@ -60,21 +66,55 @@ class NotesController extends Controller
 
 
         return redirect()->route('notes.index')->with('success', 'Perubahan berhasil disimpan!');
-
+        // return redirect()->back()->with('success', 'To Do List berhasil digenerate!');
     }
 
-    public function destroy(Notes $note)
+    public function destroy($id)
     {
+        $note = Notes::findOrFail($id);
         $note->delete();
 
-        return redirect()->route('notes.index');
+        // Pastikan pakai ->with('success', 'Pesan...')
+        return redirect()->route('notes.index')->with('success', 'Catatan berhasil dihapus.');
     }
 
     public function edit(Notes $note)
+    {
+        return view('notes.edit', compact('note'));
+    }
+
+    public function togglePin($id)
 {
-    return view('notes.edit', compact('note'));
+    $note = Notes::findOrFail($id);
+
+    // Toggle status (jika 1 jadi 0, jika 0 jadi 1)
+    $note->is_pinned = !$note->is_pinned;
+    $note->save();
+
+    // Tentukan pesan notifikasi
+    $message = $note->is_pinned ? 'Catatan berhasil disematkan!' : 'Sematkan catatan dilepas!';
+
+    // Redirect kembali ke halaman sebelumnya dengan pesan sukses
+    // Ini akan memicu SweetAlert yang sudah ada di index.blade.php kamu
+    return redirect()->back()->with('success', $message);
 }
 
+    public function search(Request $request)
+    {
+        $keyword = $request->q;
+
+        if (empty($keyword)) {
+            return response()->json([]);
+        }
+
+        $notes = Notes::where('judul', 'LIKE', "%$keyword%")
+            ->orWhere('deskripsi', 'LIKE', "%$keyword%")
+            ->orderBy('is_pinned', 'DESC')
+            ->orderBy('updated_at', 'DESC')
+            ->get();
+
+        return response()->json($notes);
+    }
+
+
 }
-
-

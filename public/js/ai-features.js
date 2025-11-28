@@ -18,7 +18,12 @@ function generateTodoList(noteId) {
             alert('Error: ' + data.message);
         } else {
             displayTodoList(data.todo, noteId);
-            alert('✅ To-Do List berhasil dibuat dan disimpan!');
+            Swal.fire({
+                title: "Berhasil!",
+                text: "To-Do List berhasil dibuat dan disimpan!",
+                icon: "success",
+                confirmButtonColor: "#4F46E5"
+            });
         }
         button.disabled = false;
         button.innerHTML = originalText;
