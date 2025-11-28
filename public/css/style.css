@@ -1,4 +1,6 @@
-/* ===== RESET & FONT ===== */
+/* =========================================
+   1. RESET & BASIC STYLES
+========================================= */
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +8,6 @@
     font-family: "Poppins", sans-serif;
 }
 
-/* ===== BODY ===== */
 body {
     margin: 0;
     font-family: "Poppins", sans-serif;
@@ -18,7 +19,9 @@ body {
     transition: background 0.5s ease;
 }
 
-/* ===== NAVBAR ===== */
+/* =========================================
+   2. NAVBAR STRUCTURE
+========================================= */
 .navbar {
     width: 100%;
     position: fixed;
@@ -26,14 +29,12 @@ body {
     left: 0;
     padding: 20px 0;
     z-index: 1000;
-
     background: rgba(37, 99, 235, 0.35);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-
     display: flex;
-    flex-direction: column; /* navbar = 2 baris */
-    align-items: center; /* h1 tetap di tengah */
+    flex-direction: column;
+    align-items: center;
     gap: 15px;
 }
 
@@ -45,26 +46,29 @@ body {
     margin: 0;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
 }
+
+/* Wrapper Search & Pin (Basic) */
 .nav-row {
     display: flex;
-    align-items: center; /* KUNCI: Ratakan vertikal tepat di tengah */
+    align-items: center;
     justify-content: center;
-    gap: 12px; /* Jarak antar elemen */
+    gap: 12px;
     width: 100%;
     max-width: 650px;
     padding: 0 20px;
 }
 
-/* ===== CONTAINER ===== */
+/* =========================================
+   3. CONTAINER & NOTES
+========================================= */
 .container {
     max-width: 800px;
     width: 100%;
-    margin: 180px auto 80px; /* jarak dari navbar */
+    margin: 180px auto 80px;
     padding: 0 20px;
     animation: fadeInUp 0.8s ease forwards;
 }
 
-/* ===== NOTE LIST ===== */
 .note-list h2 {
     font-size: 18px;
     color: #e0e7ff;
@@ -74,7 +78,6 @@ body {
     letter-spacing: 1px;
 }
 
-/* ===== NOTE ITEM ===== */
 .note-item {
     background: rgba(255, 255, 255, 0.15);
     border-radius: 14px;
@@ -104,41 +107,69 @@ body {
     line-height: 1.6;
 }
 
-/* ===== TOMBOL SUMMARIZE ===== */
+.note-description {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    white-space: pre-wrap;
+}
+
+/* =========================================
+   4. BUTTONS & ACTIONS
+========================================= */
 .note-actions {
     display: flex;
     justify-content: flex-end;
+    gap: 10px;
     margin-top: 10px;
 }
 
+.btn-edit,
+.btn-delete,
+.btn-summarize,
+.btn-detail {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+/* Edit (Blue) */
+.btn-edit, .btn-detail {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+.btn-edit:hover, .btn-detail:hover {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    transform: translateY(-2px);
+}
+
+/* Delete (Red) */
+.btn-delete {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+.btn-delete:hover {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    transform: translateY(-2px);
+}
+
+/* Summarize (Green) */
 .btn-summarize {
     background: linear-gradient(135deg, #10b981, #059669);
-    color: #fff;
-    border: none;
-    padding: 8px 18px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.25);
 }
-
 .btn-summarize:hover {
-    transform: translateY(-2px);
     background: linear-gradient(135deg, #059669, #047857);
-    box-shadow: 0 6px 14px rgba(16, 185, 129, 0.35);
+    transform: translateY(-2px);
 }
 
-/* ===== EMPTY STATE ===== */
-.empty {
-    color: rgba(255, 255, 255, 0.75);
-    font-style: italic;
-    text-align: center;
-    margin-top: 20px;
-}
-
-/* ===== FLOATING BUTTON (+) ===== */
+/* Floating Button (+) */
 .btn-float {
     position: fixed;
     right: 25px;
@@ -159,227 +190,14 @@ body {
     z-index: 999;
     animation: floatUp 0.9s ease forwards;
 }
-
 .btn-float:hover {
     transform: scale(1.08);
     background: linear-gradient(135deg, #1d4ed8, #2563eb);
-    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
 }
 
-/* ===== ANIMASI ===== */
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes floatUp {
-    from {
-        opacity: 0;
-        transform: translateY(60px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* === Form Container === */
-.note-form {
-    max-width: 500px;
-    margin: 3rem auto;
-    background: rgba(255, 255, 255, 0.15);
-    padding: 2rem;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.note-form h2 {
-    text-align: center;
-    color: #fff;
-    margin-bottom: 1.5rem;
-}
-
-/* === Input & Textarea === */
-label {
-    display: block;
-    color: #fff;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-}
-
-input[type="text"],
-textarea {
-    width: 100%;
-    padding: 0.8rem;
-    border-radius: 8px;
-    border: none;
-    margin-bottom: 1.2rem;
-    font-size: 1rem;
-    font-family: "Poppins", sans-serif;
-}
-
-textarea {
-    resize: vertical;
-    min-height: 120px;
-}
-
-/* === Tombol Form (Kembali & Simpan) ===== */
-.form-buttons {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.buttons-right {
-    display: flex;
-    gap: 10px;
-    flex-direction: row-reverse;
-}
-
-.inline-form {
-    display: inline;
-}
-
-/* Tombol Kembali */
-.btn-back {
-    background: rgba(255, 255, 255, 0.15); /* efek kaca */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    color: #fff;
-    padding: 0.7rem 1.5rem;
-    border-radius: 10px;
-    font-weight: 600;
-    text-decoration: none;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-}
-
-.btn-back:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
-}
-
-/* Tombol Simpan */
-.btn-save {
-    background: linear-gradient(135deg, #10b981, #059669); /* hijau Noteva */
-    color: #fff;
-    border: none;
-    padding: 0.7rem 1.5rem;
-    border-radius: 10px;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
-    transition: all 0.3s ease;
-}
-
-.btn-save:hover {
-    background: linear-gradient(135deg, #059669, #047857);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
-}
-
-/* ===== NOTE ACTION BUTTONS (Edit, Hapus, Summarize) ===== */
-.note-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.btn-edit,
-.btn-delete,
-.btn-summarize {
-    padding: 8px 16px;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 14px;
-    cursor: pointer;
-    border: none;
-    color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-}
-
-/* Tombol Edit (biru) */
-.btn-edit {
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 0.7rem 1.5rem;
-}
-
-.btn-edit:hover {
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(37, 99, 235, 0.25);
-}
-
-/* Tombol Hapus (merah) */
-.btn-delete {
-    background: linear-gradient(135deg, #ef4444, #dc2626);
-    padding: 0.7rem 1.5rem;
-}
-
-.btn-delete:hover {
-    background: linear-gradient(135deg, #dc2626, #b91c1c);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(239, 68, 68, 0.25);
-}
-
-/* Tombol Summarize (hijau) */
-.btn-summarize {
-    background: linear-gradient(135deg, #10b981, #059669);
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 0.7rem 1.5rem;
-}
-
-.btn-summarize:hover {
-    background: linear-gradient(135deg, #059669, #047857);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(16, 185, 129, 0.25);
-}
-
-/* ===== FORM CREATE & EDIT ===== */
-.btn-detail {
-    background: linear-gradient(135deg, #3b82f6, #2563eb); /* biru */
-    color: #fff;
-    padding: 8px 16px;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 14px;
-    cursor: pointer;
-    border: none;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-}
-
-.btn-detail:hover {
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(37, 99, 235, 0.25);
-}
-
+/* =========================================
+   5. FORMS
+========================================= */
 .note-form {
     max-width: 500px;
     margin: 3rem auto;
@@ -391,15 +209,22 @@ textarea {
     animation: fadeInUp 0.8s ease forwards;
 }
 
-.note-form label {
+.note-form h2 {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 1.5rem;
+}
+
+label {
     display: block;
     color: #fff;
     font-weight: 500;
     margin-bottom: 0.5rem;
 }
 
-.note-form input[type="text"],
-.note-form textarea {
+/* Style input dasar (akan di-override search box di bawah) */
+input[type="text"],
+textarea {
     width: 100%;
     padding: 0.8rem;
     border-radius: 8px;
@@ -410,348 +235,71 @@ textarea {
     background: rgba(255, 255, 255, 0.1);
     color: #fff;
 }
+textarea { resize: vertical; min-height: 120px; }
 
-.note-form textarea {
-    resize: vertical;
-    min-height: 120px;
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+.buttons-right { display: flex; gap: 10px; flex-direction: row-reverse; }
+
+.btn-back, .btn-save {
+    padding: 0.7rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
 }
 
-/* Tombol Simpan */
+.btn-back {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    backdrop-filter: blur(10px);
+}
+.btn-back:hover { background: rgba(255, 255, 255, 0.25); transform: translateY(-2px); }
+
 .btn-save {
     background: linear-gradient(135deg, #10b981, #059669);
     color: #fff;
-    border: none;
-    padding: 0.7rem 1.5rem;
-    border-radius: 10px;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
-    transition: all 0.3s ease;
 }
+.btn-save:hover { background: linear-gradient(135deg, #059669, #047857); transform: translateY(-2px); }
 
-.btn-save:hover {
-    background: linear-gradient(135deg, #059669, #047857);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
-}
-
-/* Tombol Kembali */
-.btn-back {
-    display: inline-block;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    color: #fff;
-    padding: 0.7rem 1.5rem;
-    border-radius: 10px;
-    font-weight: 600;
-    text-decoration: none;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-}
-
-.btn-back:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
-}
-
-/* ===== FLOATING BUTTON (+) ===== */
-.btn-float {
-    position: fixed;
-    right: 25px;
-    bottom: 25px;
-    background: linear-gradient(135deg, #2563eb, #3b82f6);
-    color: #fff;
-    font-size: 28px;
-    font-weight: bold;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.3);
-    transition: all 0.35s ease;
-    z-index: 999;
-    animation: floatUp 0.9s ease forwards;
-}
-
-.btn-float:hover {
-    transform: scale(1.08);
-    background: linear-gradient(135deg, #1d4ed8, #2563eb);
-    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
-}
-
-.btn-generate {
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 0.7rem 1.5rem;
-}
-
-.btn-generate:hover {
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(37, 99, 235, 0.25);
-}
-
-.btn-generate {
-    padding: 10px 150px;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 12px;
-    cursor: pointer;
-    border: none;
-    color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-}
-
-/*to do list*/
-
-.todo-list-container {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-left: 4px solid #3b82f6;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
-}
-
-.todo-list-title {
-    color: white;
-    font-weight: 600;
-    margin-bottom: 15px;
-    font-size: 18px;
-}
-
-.todo-item {
-    display: flex;
-    align-items: center;
-    padding: 12px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    margin-bottom: 10px;
-    transition: all 0.3s;
-}
-
-.todo-item:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.todo-item.completed {
-    opacity: 0.6;
-}
-
-.todo-checkbox {
-    width: 20px;
-    height: 20px;
-    margin-right: 12px;
-    cursor: pointer;
-    accent-color: #10b981;
-}
-
-.todo-text {
-    color: white;
-    flex: 1;
-    line-height: 1.6;
-}
-
-.todo-item.completed .todo-text {
-    text-decoration: line-through;
-}
-
-.note-description {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 10px;
-    color: white;
-    line-height: 1.8;
-    margin-bottom: 20px;
-    white-space: pre-wrap;
-}
-/* ===========================
-   MODAL BACKDROP
-=========================== */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    backdrop-filter: blur(2px);
-}
-
-/* ===========================
-   MODAL CONTAINER
-=========================== */
-.modal-content {
-    background: #ffffff; /* Background modal putih */
-    padding: 25px;
-    border-radius: 20px;
-    width: 90%;
-    max-width: 500px; /* Sedikit lebih ramping */
-    max-height: 80vh;
-    overflow-y: auto;
-    font-family: "Poppins", sans-serif;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-    animation: scaleUp 0.3s ease forwards;
-    position: relative;
-}
-
-/* Judul */
-.modal-content h3 {
-    margin-top: 0;
-    margin-bottom: 20px;
-    font-weight: 700;
-    color: #1e293b; /* Warna teks judul gelap */
-    text-align: center;
-    font-size: 22px;
-}
-
-/* Summary Text */
-.modal-content pre {
-    background: #f5f5f5;
-    padding: 18px;
-    border-radius: 10px;
-    font-size: 14px;
-    color: #333;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    line-height: 1.6;
-}
-
-/* Tombol Tutup */
-.modal-close {
-    margin-top: 15px;
-    padding: 10px 20px;
-    background: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    font-family: "Poppins", sans-serif;
-    transition: 0.2s;
-}
-
-.modal-close:hover {
-    background: #45a049;
-    transform: scale(1.05);
-}
-
-/* ===== OVERLAY MODAL ===== */
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.45);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9000;
-    padding: 20px;
-}
-
-/* ===== CARD MODAL ===== */
-.modal-content {
-    background: #ffffff;
-    width: 450px;
-    max-height: 85vh;
-    padding: 25px;
-    border-radius: 20px;
-    overflow-y: auto;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    -ms-border-radius: 20px;
-    -o-border-radius: 20px;
-}
-
-.modal-content::-webkit-scrollbar {
-    width: 6px;
-}
-
-.modal-content::-webkit-crollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
-}
-
-/* ===== DAFTAR NOTE ===== */
+/* =========================================
+   6. PIN ITEM & ACTIONS (Navbar)
+========================================= */
+/* Pin Item di List Modal */
 .pin-item {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Teks kiri, tombol kanan */
-
+    justify-content: space-between;
     padding: 12px 16px;
     margin-bottom: 12px;
-
-    /* Agar kontras dengan modal putih, kita beri background biru muda/glass */
     background: linear-gradient(135deg, #3b82f6, #2563eb);
     border-radius: 12px;
-    color: #fff; /* Teks putih di atas background biru */
-
+    color: #fff;
     box-shadow: 0 4px 10px rgba(59, 130, 246, 0.2);
     transition: all 0.3s ease;
 }
-
 .pin-item:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 15px rgba(59, 130, 246, 0.3);
 }
-
 .pin-item span {
     font-weight: 500;
     font-size: 15px;
-    /* Agar teks panjang tidak merusak layout */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 70%;
 }
-/* ===== TOMBOL PIN/UNPIN ===== */
-.btn-pin {
-    /* Kita hapus position absolute agar dia nempel di sebelah search box */
-    position: static;
-    margin: 0;
-    height: 50px; /* Samakan tinggi dengan search box */
-    padding: 0 24px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-
-    border-radius: 12px;
-    border: 2px solid rgba(255, 255, 255, 0.4);
-    background: rgba(255, 255, 255, 0.2); /* Warna samakan dengan input */
-    color: #ffffff;
-    font-size: 16px; /* Samakan font size */
-    font-weight: 600;
-    cursor: pointer;
-
-    backdrop-filter: blur(4px);
-    transition: all 0.3s ease;
-    white-space: nowrap;
-}
-
+/* Action Button inside Pin List */
 .btn-pin-action {
-    background: rgba(255, 255, 255, 0.2); /* Transparan putih */
+    background: rgba(255, 255, 255, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.4);
     color: #fff;
     padding: 6px 14px;
@@ -761,112 +309,256 @@ textarea {
     cursor: pointer;
     transition: all 0.2s ease;
 }
+.btn-pin-action:hover { background: #fff; color: #2563eb; }
 
-.btn-pin-action:hover {
-    background: #fff;
-    color: #2563eb; /* Teks jadi biru saat hover */
-}
 
-.btn-close {
-    display: block;
+/* =========================================
+   7. MODAL SYSTEM (New Feature Merged)
+========================================= */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
     width: 100%;
-    margin-top: 20px;
-    padding: 12px;
-    background: #f1f5f9;
-    color: #64748b;
-    border: none;
-    border-radius: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
 }
 
-.btn-close:hover {
-    background: #e2e8f0;
-    color: #334155;
+.modal-content {
+    background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 20px;
+    max-width: 700px;
+    width: 90%;
+    max-height: 80vh;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.4s ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
-.btn-pin:hover {
-    background: rgba(255, 255, 255, 0.4);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+/* Modal Header (Fitur Baru) */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.modal.hidden {
-    display: none !important;
-}
-
-/* ===== ANIMATION ===== */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes scaleUp {
-    from {
-        transform: scale(0.85);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-/* Animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ===== SEARCH BOX STYLING ===== */
-.search-box {
-    flex: 1; /* Mengisi sisa ruang */
-    height: 50px; /* TINGGI FIXED */
-
-    /* Reset style bawaan input agar rata */
+.modal-header h3 {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 700;
     margin: 0;
-    padding: 0 20px; /* Padding kiri kanan saja */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
 
-    border-radius: 12px;
-    border: 2px solid rgba(255, 255, 255, 0.4);
+/* Close Icon (X) */
+.modal-close-icon {
     background: rgba(255, 255, 255, 0.2);
-    color: #fff;
-    font-size: 16px; /* Font sedikit dibesarkan biar imbang */
-
-    backdrop-filter: blur(4px);
+    border: none;
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 300;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: all 0.3s ease;
+    padding: 0;
+    line-height: 1;
+}
+.modal-close-icon:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
 }
 
-.search-box:focus {
-    outline: none;
-    background: rgba(255, 255, 255, 0.35);
-    border-color: #fff;
+/* Modal Body */
+.modal-body {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+    background: #ffffff;
 }
 
-.search-box::placeholder {
-    color: rgba(255, 255, 255, 0.8);
+/* Result Container */
+.result-container {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    border-left: 4px solid #667eea;
+}
+
+.result-container pre {
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #2d3748;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: 'Poppins', sans-serif;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* Scrollbar Custom */
+.result-container pre::-webkit-scrollbar,
+.modal-body::-webkit-scrollbar,
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+.result-container pre::-webkit-scrollbar-thumb,
+.modal-body::-webkit-scrollbar-thumb,
+.modal-content::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 10px;
+}
+
+/* Modal Footer */
+.modal-footer {
+    padding: 20px 30px;
+    background: #f8f9fa;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-modal-close, .btn-close {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.btn-modal-close:hover, .btn-close:hover {
+    background: linear-gradient(135deg, #5568d3 0%, #6b42a0 100%);
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   8. AI DROPDOWN (New Feature Merged)
+========================================= */
+.ai-dropdown {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.btn-dropdown {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    transition: 0.2s;
+    font-size: 14px;
+    width: 100%;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.btn-dropdown:hover {
+    background: linear-gradient(135deg, #7c3aed, #6d28d9);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(139, 92, 246, 0.25);
+}
+
+.btn-dropdown::after {
+    content: "▼";
+    font-size: 12px;
+}
+
+/* Dropdown Content */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    min-width: 100%;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 5px;
+    animation: slideDown 0.3s ease;
+}
+
+.dropdown-content.show {
+    display: block;
+}
+
+.dropdown-item {
+    color: #1f2937;
+    padding: 12px 20px;
+    text-decoration: none;
+    display: block;
+    border: none;
+    background: transparent;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+.dropdown-item:hover {
+    background: rgba(139, 92, 246, 0.1);
+    color: #8b5cf6;
+}
+.dropdown-item:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 /* =========================================
-   FIX FINAL: NAVBAR ALIGNMENT & PRECISION
-   (Paste di baris paling bawah style.css)
+   9. ANIMATIONS
+========================================= */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes floatUp { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: translateY(0); } }
+
+/* =========================================
+   10. FIX FINAL: NAVBAR & SEARCH (Important)
+   Pastikan ini ada di paling bawah!
 ========================================= */
 
-/* 1. Pastikan Container Baris Flexbox Rapi */
+/* Pastikan Container Baris Flexbox Rapi */
 .nav-row {
     display: flex !important;
-    align-items: center !important; /* Paksa vertikal tengah */
+    align-items: center !important;
     justify-content: center !important;
     gap: 12px;
     width: 100%;
@@ -874,12 +566,11 @@ textarea {
     padding: 0 20px;
 }
 
-/* 2. Reset Search Box (Timpa style global input) */
+/* Reset Search Box (Timpa style global input) */
 input.search-box {
-    flex: 1; /* Isi sisa ruang */
-    height: 50px !important; /* Paksa tinggi 50px */
-    width: auto !important; /* Reset width 100% bawaan */
-
+    flex: 1;
+    height: 50px !important;
+    width: auto !important;
     /* PENTING: Matikan margin/padding bawaan global */
     margin: 0 !important;
     padding: 0 20px !important;
@@ -890,7 +581,7 @@ input.search-box {
     background: rgba(255, 255, 255, 0.2);
     color: #fff;
     font-size: 16px;
-    line-height: normal; /* Reset line-height agar teks di tengah */
+    line-height: normal;
 
     backdrop-filter: blur(4px);
     transition: all 0.3s ease;
@@ -901,25 +592,24 @@ input.search-box:focus {
     outline: none;
     border-color: #fff;
 }
+input.search-box::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
 
-/* 3. Reset Tombol Pin (Samakan Persis) */
+/* Reset Tombol Pin (Samakan Persis) */
 button.btn-pin {
-    /* Reset posisi */
     position: static !important;
     transform: none !important;
     margin: 0 !important;
 
-    /* Dimensi Wajib Sama */
     height: 50px !important;
     padding: 0 24px !important;
 
-    /* Flexbox Internal agar teks & icon di tengah */
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     gap: 8px;
 
-    /* Styling Visual */
     border-radius: 12px;
     border: 2px solid rgba(255, 255, 255, 0.4);
     background: rgba(255, 255, 255, 0.2);
@@ -935,6 +625,22 @@ button.btn-pin {
 
 button.btn-pin:hover {
     background: rgba(255, 255, 255, 0.35);
-    transform: translateY(-2px) !important; /* Animasi hover */
+    transform: translateY(-2px) !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.modal.hidden {
+    display: none !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        max-height: 85vh;
+    }
+    .nav-row {
+        max-width: 100%;
+        padding: 0 10px;
+    }
 }
